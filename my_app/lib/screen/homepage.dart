@@ -111,7 +111,7 @@ class _HomepageState extends State<Homepage> {
     gameHasStarted = true;
     Timer.periodic(const Duration(milliseconds: 50), (timer) {
       time += 0.04;
-      height = -4.9 * time * time + 2.8 * time;
+      height = -4.5 * time * time + 2.8 * time;
       setState(() {
         birdYaxis = initialHeight - height;
       });
