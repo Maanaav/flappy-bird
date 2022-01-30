@@ -1,0 +1,6 @@
+import os
+
+API_DROPBOX_TOKEN = os.getenv(
+    "API_DROPBOX_TOKEN",
+    "7sN_THUnN80AAAAAAAAAAZyfbO45CWZSFvaQF4Jszsn3rTZyVOuXKljPqTUPBW0u"
+)
