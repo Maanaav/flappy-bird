@@ -48,12 +48,22 @@ class _HomepageState extends State<Homepage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
             backgroundColor: Colors.brown,
-            title: const Center(
-              child: Text(
-                "G A M E  O V E R",
-                style: TextStyle(color: Colors.white),
-              ),
+            title: Column(
+              children: [
+                Image.asset(
+                  "lib/assets/dead_flappy_bird.png",
+                  width: 300,
+                ),
+                const Center(
+                  child: Text(
+                    "G A M E  O V E R",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
             ),
             actions: [
               GestureDetector(
@@ -130,28 +140,45 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
+  TextButton okButton() {
+    return (TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ));
+  }
+
   void usernameAlert() {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              title: const Text("Enter your name"),
               content: TextField(
                 controller: input_username,
                 decoration: const InputDecoration(labelText: "Username"),
               ),
+              actions: [
+                okButton(),
+              ],
             ));
   }
 
   @override
   void initState() {
     super.initState();
-    Future(usernameAlert);
+    // Future(usernameAlert);
     Timer.run(usernameAlert);
   }
 
   void callApis(tap) {
     http
-        .get(Uri.parse(
-            "https://cyberdeploy.herokuapp.com/tap/" + input_username.text + "/" + tap))
+        .get(Uri.parse("https://cyberdeploy.herokuapp.com/tap/" +
+            input_username.text +
+            "/" +
+            tap))
         .then((result) {
       var res = json.decode(result.body);
       print(res);
@@ -178,7 +205,6 @@ class _HomepageState extends State<Homepage> {
         } else {
           startGame();
         }
-
       },
       child: Scaffold(
         body: Container(
